@@ -44,6 +44,7 @@ INSERT INTO `scholarship`.`User_credentials`(`username`, `password`) VALUES ('pr
 
 CREATE TABLE `scholarship`.`Students` (
     `stu_Id` INT NOT NULL AUTO_INCREMENT,
+    `username` VARCHAR(45) NOT NULL,
     `stu_name` VARCHAR(45) NOT NULL,
     `gender` ENUM('FEMALE','MALE'),
     `caste` ENUM('GEN','SC','ST','OBC'),
@@ -51,13 +52,13 @@ CREATE TABLE `scholarship`.`Students` (
     `state` VARCHAR(45) NOT NULL,
     PRIMARY KEY (`stu_Id`));
 
-INSERT INTO `scholarship`.`Students`(`stu_Id`, `stu_name`, `gender`, `caste`, `parental_income(in lac)`, `state`) VALUES ('1','archaj02', 'Archaj Jain', 'MALE', 'OBC','7.50','AP');
-INSERT INTO `scholarship`.`Students`(`stu_Id`, `stu_name`, `gender`, `caste`, `parental_income(in lac)`, `state`) VALUES ('2','sarthak01', 'Sarthak Sinha', 'MALE','GEN','7.80','Rajasthan');
-INSERT INTO `scholarship`.`Students`(`stu_Id`, `stu_name`, `gender`, `caste`, `parental_income(in lac)`, `state`) VALUES ('3','priya04', 'Priya Saini', 'FEMALE', 'OBC','5.50','UP');
+INSERT INTO `scholarship`.`Students`(`stu_Id`, `username`,`stu_name`, `gender`, `caste`, `parental_income(in lac)`, `state`) VALUES ('1','archaj02', 'Archaj Jain', 'MALE', 'OBC','7.50','AP');
+INSERT INTO `scholarship`.`Students`(`stu_Id`, `username`,`stu_name`, `gender`, `caste`, `parental_income(in lac)`, `state`) VALUES ('2','sarthak01', 'Sarthak Sinha', 'MALE','GEN','7.80','Rajasthan');
+INSERT INTO `scholarship`.`Students`(`stu_Id`, `username`,`stu_name`, `gender`, `caste`, `parental_income(in lac)`, `state`) VALUES ('3','priya04', 'Priya Saini', 'FEMALE', 'OBC','5.50','UP');
 
 
 CREATE TABLE `scholarship`.`Stu_user` (
-  `stu_Id` INT NOT NULL AUTO_INCREMENT ,
+  `stu_Id` INT NOT NULL AUTO_INCREMENT,
   `username` varchar(45) NOT NULL,
  PRIMARY KEY (`stu_Id`),
  FOREIGN KEY (username) REFERENCES User_credentials(`username`),
@@ -73,7 +74,7 @@ INSERT INTO `scholarship`.`Stu_user`(`stu_Id`,`username`) VALUES ('3','priya04')
 
 
 CREATE TABLE `scholarship`.`Eligibility` (
-    `s_Id` INT  NOT NULL,
+    `s_Id` INT UNSIGNED NOT NULL,
     `gender` ENUM('FEMALE','MALE'),
     `caste` ENUM('GEN','SC','ST','OBC'),
     `parental_income(in lac)` DECIMAL(4,2)  NULL,
@@ -107,7 +108,7 @@ INSERT INTO `scholarship`.`Eligibility`(`s_Id`,`gender`,`caste`,`parental_income
 
 
 CREATE TABLE `scholarship`.`Stu_school` (
-   `stu_Id` INT  NOT NULL,
+   `stu_Id` INT NOT NULL,
    `percentage` DECIMAL(4,2) NULL,
    FOREIGN KEY (stu_Id) REFERENCES Students(`stu_Id`));
 
